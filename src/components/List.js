@@ -6,24 +6,25 @@ import { Droppable } from 'react-beautiful-dnd';
 export default class List extends Component {
   render(props) {
     return (
+      <Col className="list-column">
       <Droppable droppableId={this.props.column.id}>
         {provided => (
-          <Col className="list-column"
+          <div
             ref={provided.innerRef}
             innerRef={provided.innerRef}
             {...provided.droppableProps}
-            >
-            <p>{this.props.column.title}</p>
-              {this.props.tasks.map((task, index) => <Task
-                task={task}
-                title={task.title}
-                description={task.description}
-                index={index}
-                />)}
-              {provided.placeholder}
-          </Col>
+          >
+                {this.props.tasks.map((task, index) => <Task
+                  task={task}
+                  title={task.title}
+                  description={task.description}
+                  index={index}
+                  />)}
+                {provided.placeholder}
+          </div>
         )}
       </Droppable>
+    </Col>
     )
   }
 }
