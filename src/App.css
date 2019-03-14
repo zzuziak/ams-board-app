@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:700|Montserrat:400');
+
+
 .App {
   text-align: center;
 }
@@ -30,4 +33,82 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* board style */
+
+.board-container {
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.top-bar-container {
+  width: 100%;
+  background-color: white;
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.4);
+  padding: 0 150px;
+  z-index: 99;
+  margin-bottom: 3px;
+}
+
+.top-bar {
+  background-color: white;
+  color: lightgray;
+  height: 50px;
+  align-items: center;
+}
+
+.list-name {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 20px;
+}
+
+.list-container {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 150px 0 150px;
+}
+/* column style */
+
+.list-column {
+  height: 100vh;
+  background-color: #f8f8f8;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 0 !important;
+}
+
+/* tasks style */
+
+.task-card {
+  border-radius: 3px;
+  min-height: 200px;
+  margin: 15px 0;
+  background-color: white;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.task-card-title {
+  background-color: #f2ba41;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  padding: 3px 8px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.task-card-description {
+  color: dark-grey;
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat';
+  text-align: left;
+  padding: 10px;
 }
