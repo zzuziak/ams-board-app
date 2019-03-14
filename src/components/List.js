@@ -13,6 +13,7 @@ export default class List extends Component {
             ref={provided.innerRef}
             innerRef={provided.innerRef}
             {...provided.droppableProps}
+            style={{height: '100vh'}}
           >
                 {this.props.tasks.map((task, index) => <Task
                   task={task}
