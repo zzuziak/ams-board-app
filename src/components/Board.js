@@ -30,11 +30,21 @@ export default class Board extends Component {
           fetchedTasksIds.push(task._id);
         })
 
-        console.log(fetchedTasks);
+        const firstColumn = this.state.columns[1];
+        const updatedColumn = {
+          ...firstColumn,
+          taskIds: fetchedTasksIds
+        }
+
         const newState = {
           ...this.state,
           tasks: fetchedTasks,
+          columns: {
+            ...this.state.columns,
+            [updatedColumn.id]: updatedColumn,
+          },
         }
+        this.setState(newState);
 
         // this.setState(newState, () => console.log(this.state));
       })
@@ -127,11 +137,9 @@ export default class Board extends Component {
                 }
               </DragDropContext>
             </Row>
-            <Col>
-              <TaskAdder />
-            </Col>
           </Container>
         </div>
+        <TaskAdder />
       </div>
     )
   }

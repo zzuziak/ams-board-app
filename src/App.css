@@ -46,7 +46,7 @@
   width: 100%;
   background-color: white;
   box-shadow: 1px 0 1px rgba(0, 0, 0, 0.4);
-  padding: 0 150px;
+  padding: 0 180px;
   z-index: 99;
   margin-bottom: 3px;
 }
@@ -67,7 +67,7 @@
 .list-container {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 0 150px 0 150px;
+  margin: 0 180px 0 180px;
   display: flex;
   flex-direction: column;
 }
@@ -96,17 +96,19 @@
 .task-card-title {
   background-color: #f2ba41;
   color: white;
-  font-size: 16px;
   letter-spacing: 1px;
   font-family: 'Roboto';
   font-weight: bold;
-  padding: 3px 8px;
+  padding: 5px 8px;
   align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
+.task-card-title p {
+  margin: 0 !important;
+}
 .task-card-description {
   color: dark-grey;
   width: 100%;
@@ -120,7 +122,11 @@
 
 .task-adder {
   border-radius: 3px;
-  min-height: 200px;
+  min-width: 160px;
+  position: fixed;
+  z-index: 98;
+  top: 10px;
+  left: 10px;
   margin: 15px 0;
   background-color: white;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
@@ -132,7 +138,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 10px 20px;
   font-weight: bold;
   font-family: 'Roboto';
 }

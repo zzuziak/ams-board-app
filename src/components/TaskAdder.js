@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createTask } from '../actions/index';
 import axios from 'axios';
-
+import { Draggable } from 'react-draggable';
 
 class TaskAdder extends Component {
   constructor(props) {
@@ -10,11 +10,13 @@ class TaskAdder extends Component {
 
      this.state = {
        title: "",
-       description: ""
+       description: "",
+       isHidden: true
      };
 
      this.onChange = this.onChange.bind(this);
      this.onSubmit = this.onSubmit.bind(this);
+     this.showFrom = this.showForm.bind(this);
    }
 
 
@@ -36,19 +38,32 @@ class TaskAdder extends Component {
         }
       );
 
+      this.setState({
+        title: '',
+        desctiption: '',
+        isHidden: true
+      })
+  }
 
-    // this.props.createTask(task);
-    // save in db
-
+  showForm() {
+    console.log("hey");
+    this.setState(state => ({
+      isHidden: !this.state.isHidden
+    }));
   }
 
   render() {
+    const display = this.state.isHidden ? {display: 'none', width: '400px !important'} : {};
+
     return (
       <div className="task-adder">
         <div className="task-adder-label">
           <p>New task </p>
+          <button
+            className="btn btn-info"
+            onClick={this.showForm.bind(this)}> + </button>
         </div>
-        <div className="form-group task-adder-form">
+        <div className="form-group task-adder-form" style={display}>
           <form onSubmit={this.onSubmit}>
             <input
             name="title"
@@ -66,7 +81,7 @@ class TaskAdder extends Component {
             className="form-control form-field"
             rows='5'
             />
-            <input type='submit' value="Add task +" className="btn btn-primary submit-btn"/>
+          <input type='submit' value="Add task +" className="btn btn-info submit-btn"/>
           </form>
         </div>
       </div>
