@@ -7,6 +7,7 @@ const PORT = 4000;
 const taskRoutes = express.Router();
 
 let Task = require('./task.model');
+let Column = require('./column.model');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -29,11 +30,22 @@ taskRoutes.route('/').get(function(req,res) {
   })
 })
 
+
+taskRoutes.route('/:id').get(function(req, res) {
+  let id = req.params.id;
+  Task.findById(id, function(err, task) {
+    res.json(task);
+  });
+})
+
 taskRoutes.route('/create').post(function(req,res) {
-  let task = new Task(req.body);
+  let task = new Task();
+  task.title = req.body.title;
+  console.log(req.body);
+  task.description = req.body.description;
   task.save()
     .then(task => {
-      res.status(200).json({'task': 'task created successfully'});
+      res.status(200).json(task);
     })
     .catch(err => {
       console.log(err);
@@ -41,6 +53,23 @@ taskRoutes.route('/create').post(function(req,res) {
     })
 })
 
+taskRoutes.route('/column/update/:id').post(function(req, res) {
+  Column.findById(req.params.id, function(err, column) {
+    if (!column) {
+      res.status(404).send("Column doesns't exist");
+    } else {
+      column.taskIds = req.body.taskIds;
+    }
+
+    column.save()
+      .then(column => {
+        res.json("Column updated");
+      })
+      .catch(err => {
+        res.status(400).send("Update didn't succeed");
+      })
+  })
+})
 
 app.use('/tasks', taskRoutes);
 
