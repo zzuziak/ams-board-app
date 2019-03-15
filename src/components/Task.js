@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 export default class Task extends Component {
   render() {
-    const color = `backgroundColor: ${props => (props.isDragging ? 'red' : 'white')}`
+    console.log(this.props.task.id);
     return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
-        {(provided, snapshot) => (
+      <Draggable draggableId={this.props.task._id} index={this.props.index}>
+        {(provided) => (
           <div
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -13,12 +13,10 @@ export default class Task extends Component {
           >
             <div
               className="task-card"
-              isDragging={snapshot.isDragging}
-              style={{color}}
             >
               <div className="task-card-title">
-                <h3>{this.props.title}</h3>
-                <h3> x </h3>
+                <p>{this.props.title}</p>
+                <h5> x </h5>
               </div>
               <div className="task-card-description">
                 <p>{this.props.description}</p>

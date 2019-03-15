@@ -1,13 +1,57 @@
 import React, { Component } from 'react';
 import List from './List';
 import TopBar from './TopBar';
-import { Container, Row } from 'react-bootstrap';
-import data from '../initialData';
+import TaskAdder from './TaskAdder';
+import { Container, Row, Col } from 'react-bootstrap';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { columns, tasks, columnOrder } from '../data.js';
+import axios from 'axios';
 
 export default class Board extends Component {
-  state = data;
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: columns,
+      tasks: tasks,
+      columnOrder: columnOrder
+    }
+    this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:4000/tasks/')
+      .then(res => {
+        let jsonTasks = res.data;
+        let fetchedTasks = {};
+        let fetchedTasksIds = [];
+        jsonTasks.forEach(task => {
+          fetchedTasks[`${task._id}`] = task;
+          fetchedTasksIds.push(task._id);
+        })
+
+        const firstColumn = this.state.columns[1];
+        const updatedColumn = {
+          ...firstColumn,
+          taskIds: fetchedTasksIds
+        }
+
+        const newState = {
+          ...this.state,
+          tasks: fetchedTasks,
+          columns: {
+            ...this.state.columns,
+            [updatedColumn.id]: updatedColumn,
+          },
+        }
+        this.setState(newState);
+
+        // this.setState(newState, () => console.log(this.state));
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  }
   onDragEnd = result => {
     const {destination, source, draggableId } = result;
 
@@ -57,7 +101,7 @@ export default class Board extends Component {
 
     const finishTaskIds = Array.from(finish.taskIds);
     finishTaskIds.splice(destination.index, 0, draggableId);
-    
+
     const newFinish = {
       ...finish,
       taskIds: finishTaskIds,
@@ -95,6 +139,7 @@ export default class Board extends Component {
             </Row>
           </Container>
         </div>
+        <TaskAdder />
       </div>
     )
   }

@@ -13,7 +13,7 @@ export default class List extends Component {
 
                 return (
                   <Col>
-                    <p className="list-name">{column.title}</p>
+                    <p className="list-name" key={column.id}>{column.title}</p>
                   </Col>
                 )
               })}
