@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createTask } from '../actions/index';
+import axios from 'axios';
 
 
 class TaskAdder extends Component {
@@ -29,7 +30,14 @@ class TaskAdder extends Component {
       description: this.state.description
     }
 
-    this.props.createTask(task);
+    axios.post('http://localhost:4000/tasks/create', task)
+    .then(res => {
+        console.log(res);
+        }
+      );
+
+
+    // this.props.createTask(task);
     // save in db
 
   }

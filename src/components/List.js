@@ -4,6 +4,7 @@ import { Col } from 'react-bootstrap';
 import { Droppable } from 'react-beautiful-dnd';
 
 export default class List extends Component {
+  
   render(props) {
     return (
       <Col className="list-column">

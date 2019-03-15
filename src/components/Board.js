@@ -3,12 +3,45 @@ import List from './List';
 import TopBar from './TopBar';
 import TaskAdder from './TaskAdder';
 import { Container, Row, Col } from 'react-bootstrap';
-import data from '../initialData';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { columns, tasks, columnOrder } from '../data.js';
+import axios from 'axios';
 
 export default class Board extends Component {
-  state = data;
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: columns,
+      tasks: tasks,
+      columnOrder: columnOrder
+    }
+    this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:4000/tasks/')
+      .then(res => {
+        let jsonTasks = res.data;
+        let fetchedTasks = {};
+        let fetchedTasksIds = [];
+        jsonTasks.forEach(task => {
+          fetchedTasks[`${task._id}`] = task;
+          fetchedTasksIds.push(task._id);
+        })
+
+        console.log(fetchedTasks);
+        const newState = {
+          ...this.state,
+          tasks: fetchedTasks,
+        }
+
+        // this.setState(newState, () => console.log(this.state));
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  }
   onDragEnd = result => {
     const {destination, source, draggableId } = result;
 
