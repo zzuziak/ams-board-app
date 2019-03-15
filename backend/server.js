@@ -38,6 +38,20 @@ taskRoutes.route('/:id').get(function(req, res) {
   });
 })
 
+taskRoutes.route('/:id').delete(function(req, res) {
+  let id = req.params.id;
+  Task.findById(id, function(err, task) {
+    Task.remove(task)
+    .then(task => {
+      res.status(200).json(task);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).send('Failed to delete the task')
+    })
+  });
+})
+
 taskRoutes.route('/create').post(function(req,res) {
   let task = new Task();
   task.title = req.body.title;

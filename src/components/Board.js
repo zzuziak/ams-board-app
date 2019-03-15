@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import List from './List';
+import Column from './Column';
 import TopBar from './TopBar';
 import TaskAdder from './TaskAdder';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { columns, tasks, columnOrder } from '../data.js';
+import { columns, columnOrder } from '../data.js';
 import axios from 'axios';
 
 export default class Board extends Component {
@@ -13,7 +13,7 @@ export default class Board extends Component {
     super(props);
     this.state = {
       columns: columns,
-      tasks: tasks,
+      tasks: {},
       columnOrder: columnOrder
     }
     this.onDragEnd = this.onDragEnd.bind(this);
@@ -125,14 +125,14 @@ export default class Board extends Component {
         <div className="top-bar-container">
           <TopBar data={this.state} />
         </div>
-        <div className="list-container">
+        <div className="column-container">
           <Container fluid='true'>
             <Row>
               <DragDropContext onDragEnd={this.onDragEnd}>
               {this.state.columnOrder.map(columnId => {
                   const column = this.state.columns[columnId];
                   const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
-                  return <List column={column} key={column.id} tasks={tasks} />
+                  return <Column column={column} key={column.id} tasks={tasks} />
                 })
                 }
               </DragDropContext>

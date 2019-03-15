@@ -3,18 +3,17 @@ import Task from './Task';
 import { Col } from 'react-bootstrap';
 import { Droppable } from 'react-beautiful-dnd';
 
-export default class List extends Component {
+export default class Column extends Component {
 
   render(props) {
-    console.log(this.props.tasks);
     return (
-      <Col className="list-column">
+      <Col className="column-style">
       <Droppable droppableId={this.props.column.id}>
         {provided => (
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            style={{height: '100vh'}}
+            style={{height: '80vh'}}
           >
                 {this.props.tasks.map((task, index) => <Task
                   task={task}
