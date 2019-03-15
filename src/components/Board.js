@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import List from './List';
 import TopBar from './TopBar';
-import { Container, Row } from 'react-bootstrap';
+import TaskAdder from './TaskAdder';
+import { Container, Row, Col } from 'react-bootstrap';
 import data from '../initialData';
 import { DragDropContext } from 'react-beautiful-dnd';
 
@@ -57,7 +58,7 @@ export default class Board extends Component {
 
     const finishTaskIds = Array.from(finish.taskIds);
     finishTaskIds.splice(destination.index, 0, draggableId);
-    
+
     const newFinish = {
       ...finish,
       taskIds: finishTaskIds,
@@ -93,6 +94,9 @@ export default class Board extends Component {
                 }
               </DragDropContext>
             </Row>
+            <Col>
+              <TaskAdder />
+            </Col>
           </Container>
         </div>
       </div>

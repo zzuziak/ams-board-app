@@ -1,44 +1,44 @@
 const data = {
   tasks: {
-    'task1': { id: 'task1', title: 'Do sth', description: 'Desription of the task'},
-    'task2': { id: 'task2', title: 'Do sth2', description: 'Desription of the task'},
-    'task3': { id: 'task3', title: 'Do sth3', description: 'Desription of the task'},
-    'task4': { id: 'task4', title: 'Do sth4', description: 'Desription of the task'},
-    'task5': { id: 'task5', title: 'Do sth5', description: 'Desription of the task'},
+    '1': { id: '1', title: 'Do sth', description: 'Desription of the '},
+    '2': { id: '2', title: 'Do sth2', description: 'Desription of the '},
+    '3': { id: '3', title: 'Do sth3', description: 'Desription of the '},
+    '4': { id: '4', title: 'Do sth4', description: 'Desription of the '},
+    '5': { id: '5', title: 'Do sth5', description: 'Desription of the '},
   },
   columns: {
-    'column1': {
-      id: 'column1',
+    '1': {
+      id: '1',
       title: 'Flowchart',
-      taskIds: ['task1', 'task2', 'task3', 'task4'],
+      taskIds: ['1', '2', '3', '4'],
     },
-    'column2': {
-      id: 'column2',
+    '2': {
+      id: '2',
       title: 'Wireframes',
-      taskIds: ['task5'],
+      taskIds: ['5'],
     },
-    'column3': {
-      id: 'column3',
+    '3': {
+      id: '3',
       title: 'Prototype',
       taskIds: [],
     },
-    'column4': {
-      id: 'column4',
+    '4': {
+      id: '4',
       title: 'Development',
       taskIds: [],
     },
-    'column5': {
-      id: 'column5',
+    '5': {
+      id: '5',
       title: 'Test',
       taskIds: [],
     },
-    'column6': {
-      id: 'column6',
+    '6': {
+      id: '6',
       title: 'Launch',
       taskIds: [],
     }
   },
-  columnOrder: ['column1', 'column2', 'column3', 'column4', 'column5', 'column6'],
+  columnOrder: ['1', '2', '3', '4', '5', '6'],
 }
 
 export default data;

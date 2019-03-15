@@ -5,7 +5,7 @@ export default class Task extends Component {
     const color = `backgroundColor: ${props => (props.isDragging ? 'red' : 'white')}`
     return (
       <Draggable draggableId={this.props.task.id} index={this.props.index}>
-        {(provided, snapshot) => (
+        {(provided) => (
           <div
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -13,7 +13,6 @@ export default class Task extends Component {
           >
             <div
               className="task-card"
-              isDragging={snapshot.isDragging}
               style={{color}}
             >
               <div className="task-card-title">
