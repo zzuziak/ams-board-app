@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createTask } from '../actions/index';
 import axios from 'axios';
 import { Draggable } from 'react-draggable';
 
@@ -25,7 +24,6 @@ class TaskAdder extends Component {
   }
 
   onSubmit(event) {
-    event.preventDefault();
 
     const task = {
       title: this.state.title,
@@ -89,4 +87,4 @@ class TaskAdder extends Component {
   }
 }
 
-export default connect(null, { createTask })(TaskAdder);
+export default TaskAdder;

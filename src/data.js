@@ -2,7 +2,7 @@ const columns = {
   '1': {
     id: '1',
     title: 'Flowchart',
-    taskIds: ['1', '2', '3', '4'],
+    taskIds: [],
   },
   '2': {
     id: '2',
@@ -31,14 +31,7 @@ const columns = {
   }
 }
 
-const tasks = {
-  "1": { _id: '1', title: 'Do sth', description: 'Desription of the task'},
-  "2": { _id: '2', title: 'Do sth2', description: 'Desription of the task, longer in this case. Checking how element is growing. If works fine the card will extend appropriately.'},
-  "3": { _id: '3', title: 'Do sth3', description: 'Desription of the task'},
-  "4": { _id: '4', title: 'Do sth4', description: 'Desription of the task'},
-  "5": { _id: '5', title: 'Do sth5', description: 'Desription of the task'}
-}
 
 const columnOrder =  ['1', '2', '3', '4', '5', '6']
 
-export { columns, tasks, columnOrder };
+export { columns, columnOrder };
